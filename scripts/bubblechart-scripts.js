@@ -1,8 +1,6 @@
 // https://mapshaper.org/
 
 document.addEventListener("DOMContentLoaded", function () {
-    // console.log(rentBySuburbYear);
-
     let uniqueSuburbs = [...new Set(rentBySuburbYear.map(item => item.Suburb))];
 
     uniqueSuburbs.sort((a, b) => a.localeCompare(b));
@@ -20,8 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return item;  // Return the item unchanged if the year doesn't match
     });
-
-    console.log(rentBySuburbYearWithPopulation);
 
     var rentBySuburbYearBubbleChart = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -57,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "scale": {
                     "type": "pow",
                     "exponent": 4, 
-                    "range": [10, 1000] // Adjust the range as needed
+                    // "range": [10, 1000]
                 },
                 "legend": {
                     "title": "Population Size of Melbourne"
@@ -66,6 +62,9 @@ document.addEventListener("DOMContentLoaded", function () {
             "y": {
                 "field": "Price",
                 "type": "quantitative",
+                "scale": {
+                    "domain": [0, 620]
+                },
                 "title": "Rent Price"
             },
             "tooltip": [
