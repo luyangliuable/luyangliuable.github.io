@@ -4,5 +4,4 @@ const graphSettings = {
     schema: "https://vega.github.io/schema/vega-lite/v5.json"
 };
 
-console.log(JSON.stringify(nestedJsonToListJson(housePriceVsSuburbComprehensive)));
-    
+// console.log(JSON.stringify(classifyData(housePriceVsSuburbComprehensive, melbourneSuburbClassificationData)));

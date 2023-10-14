@@ -8,7 +8,7 @@ function nestedJsonToListJson (arr) {
             if (key !== "Year") {
                 result.push({
                     Year: year,
-                    Suburb: toTitleCase(key),
+                    Suburb: key,
                     Price: value
                 });
             }
