@@ -135,7 +135,35 @@ canvas {
 
 #vis-topology__current-year {
     font-size: 20px;
-    width: 20vw;
+    width: fit-content;
     z-index: 20;
     height: 10vh;
+}
+
+#year-slider {
+    width: 50%;
+}
+
+
+.button {
+    width: fit-content;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background: #1e90ff;
+    color: #FFF;
+    cursor: pointer;
+    transition: 1s all ease-in;
+}
+
+.button:hover {
+    background: purple;
+}
+
+.noselect {
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
 }

@@ -33,12 +33,23 @@
 
           <div>
               <div class="visualisation-item" id="vis-topology"> </div>
+              <input
+                  type="range"
+                  min="2011"
+                  max="2021"
+                  onChange={visTopologyYearOnChange(event)}
+                  value="2011"
+                  class="slider"
+                  id="year-slider"
+                  step="1" />
+
               <div id="vis-topology__current-year"></div>
-        </div>
-        <div class="visualisation-item" id="rent-by-suburb-year-line-chart"></div>
-        <div class="visualisation-item" id="rent-vs-house-price-for-suburbs"></div>
-        <div class="visualisation-item" id="rent-vs-house-price-for-suburbs"></div>
-        <div class="visualisation-item" id=""></div>
-    </div>
+              <div class="button noselect" id="visTopologyChartTemporalAnimationButton" onClick={toggleVisTopologyChartTemporalAnimation()}>Play</div>
+          </div>
+          <div class="visualisation-item" id="rent-by-suburb-year-line-chart"></div>
+          <div class="visualisation-item" id="parallel-coord-polot-rent-vs-house-price-for-suburbs"></div>
+          <div class="visualisation-item" id="isotype-apartment-vs-house-vs-townhouse-sold"></div>
+          <div class="visualisation-item" id=""></div>
+      </div>
   </body>
 </html>

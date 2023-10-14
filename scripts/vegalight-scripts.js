@@ -1,17 +1,60 @@
 // https://mapshaper.org/
 
+let intervalId = null;
 let availableYears = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021];
-
-// console.log(fillMissingData(housePriceVsSuburbComprehensive);
+let currYearIdx = 0;
 
 const filterHousePriceVsSuburbForYear = (arr, year) => {
-    return arr.filter(item => {
-        return item.Year === year && typeof item.Price == "number" && item.Price > 0;
+
+    const r = arr.filter(item => {
+        return item.Year === parseInt(year) && typeof item.Price == "number" && item.Price > 0;
     });
+
+    return r;
 };
 
-let currYearIdx = 0;
 let housePriceVsSuburbForYear = filterHousePriceVsSuburbForYear(housePriceVsSuburbComprehensive, availableYears[currYearIdx]);
+
+const visTopologyYearOnChange = (e) => {
+    embedChart(e.target.value);
+    UpdatevisTopologyYearDisplay(e.target.value);
+    rerenderVisTopologyChart(e.target.value);
+};   
+
+
+const UpdatevisTopologyYearDisplay = (year) => {
+    document.getElementById("vis-topology__current-year").innerHTML = `Current displaying data for year ${year}`;
+};
+
+const UpdatevisTopologyYearSlider = (year) => {
+    console.log(year);
+    document.getElementById("year-slider").value = year;
+    UpdatevisTopologyYearDisplay(year);
+};   
+
+const rerenderVisTopologyChart = (year) => {
+    housePriceVsSuburbForYear = filterHousePriceVsSuburbForYear(housePriceVsSuburbComprehensive, year);
+    embedChart(housePriceVsSuburbForYear);
+};
+
+const toggleVisTopologyChartTemporalAnimation = (e) => {
+    const visTopologyChartTemporalAnimationButton = document.getElementById("visTopologyChartTemporalAnimationButton");
+
+    if (intervalId === null) {
+        intervalId = setInterval(() => {
+            currYearIdx = (currYearIdx + 1) % availableYears.length;
+            UpdatevisTopologyYearSlider(availableYears[currYearIdx]);
+            rerenderVisTopologyChart(availableYears[currYearIdx]);
+        }, 500);
+
+        visTopologyChartTemporalAnimationButton.innerHTML = "Stop";
+    } else {
+        clearInterval(intervalId);
+        intervalId = null;
+
+        visTopologyChartTemporalAnimationButton.innerHTML = "Play";
+    }  
+};
 
 function embedChart(dataForYear) {
     var topology = {
@@ -28,7 +71,7 @@ function embedChart(dataForYear) {
             {
                 "lookup": "properties.Suburb",
                 "from": {
-                    "data": {"values": temp2},
+                    "data": {"values": housePriceVsSuburbForYear},
                     "key": "Suburb",
                     "fields": ["Price"]
                 }
@@ -73,7 +116,8 @@ function embedChart(dataForYear) {
                         }
                     },
                     "tooltip": [
-                        {"field": "properties.Suburb", "type": "nominal", "title": "Suburb"}
+                        {"field": "properties.Suburb", "type": "nominal", "title": "Suburb"},
+                        {"field": "Price", "type": "quantitative", "title": "Average Price"}
                     ]
                 }
             }
@@ -85,10 +129,14 @@ function embedChart(dataForYear) {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    setInterval(() => {
-        currYearIdx = ( currYearIdx + 1 ) % availableYears.length;
-        housePriceVsSuburbForYear = filterHousePriceVsSuburbForYear(housePriceVsSuburbComprehensive, availableYears[currYearIdx]);
-        embedChart(housePriceVsSuburbForYear);
-        document.getElementById("vis-topology__current-year").innerHTML = `Current displaying data for year ${ availableYears[currYearIdx] }`;
-    }, 500);
+    // setInterval(() => {
+    //     currYearIdx = ( currYearIdx + 1 ) % availableYears.length;
+    //     housePriceVsSuburbForYear = filterHousePriceVsSuburbForYear(housePriceVsSuburbComprehensive, availableYears[currYearIdx]);
+    //     embedChart(housePriceVsSuburbForYear);
+    //     UpdatevisTopologyYearSlider(availableYears[currYearIdx]);
+    // }, 500);
+
+    housePriceVsSuburbForYear = filterHousePriceVsSuburbForYear(housePriceVsSuburbComprehensive, availableYears[currYearIdx]);
+    UpdatevisTopologyYearDisplay(availableYears[currYearIdx]);
+    embedChart(housePriceVsSuburbForYear);
 });
