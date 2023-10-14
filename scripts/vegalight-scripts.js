@@ -19,6 +19,7 @@ const visTopologyYearOnChange = (e) => {
     embedChart(e.target.value);
     UpdatevisTopologyYearDisplay(e.target.value);
     rerenderVisTopologyChart(e.target.value);
+    currYearIdx = availableYears.indexOf(parseInt( e.target.value ));
 };   
 
 
@@ -129,13 +130,6 @@ function embedChart(dataForYear) {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    // setInterval(() => {
-    //     currYearIdx = ( currYearIdx + 1 ) % availableYears.length;
-    //     housePriceVsSuburbForYear = filterHousePriceVsSuburbForYear(housePriceVsSuburbComprehensive, availableYears[currYearIdx]);
-    //     embedChart(housePriceVsSuburbForYear);
-    //     UpdatevisTopologyYearSlider(availableYears[currYearIdx]);
-    // }, 500);
-
     housePriceVsSuburbForYear = filterHousePriceVsSuburbForYear(housePriceVsSuburbComprehensive, availableYears[currYearIdx]);
     UpdatevisTopologyYearDisplay(availableYears[currYearIdx]);
     embedChart(housePriceVsSuburbForYear);

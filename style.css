@@ -6,16 +6,27 @@
     margin-right: 5px;
 }
 
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('path-to-your-font/ProximaNova-Regular.woff2') format('woff2'),
+         url('path-to-your-font/ProximaNova-Regular.woff') format('woff');
+}
+
 body {
-    /* background-image: url('https://w.wallhaven.cc/full/0p/wallhaven-0p5k9e.jpg'); */
+    /* background-image: url('https://w.wallhaven.cc/full/5w/wallhaven-5wqy27.png'); */
+    /* font-family: 'Proxima Nova', sans-serif; */
+    font-family: 'Open Sans', sans-serif;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
 .visualisation-item {
-    width: fit-content;
-    width: 70vw;
+    width: 50vw;
+    display: flex;
+    flex-direction: center;
+    justify-content: center;
+    align-items: center;
 }
 
 video {
@@ -28,7 +39,7 @@ video {
     object-fit: cover;
 }
 
-#vis-topology__container {
+#graph__container {
     z-index: 1;
     width: 100vw;
     display: flex;
@@ -37,17 +48,17 @@ video {
     align-items: center;
 }
 
-#vis-topology__container * {
+#graph__container>* {
     --bg-color: rgba(16, 18, 27, 40%);
     --bg-color: rgba(200, 200, 200, 40%);
-    /* background: var(--bg-color); */
-    backdrop-filter: blur(20px);
+    background: var(--bg-color);
+    backdrop-filter: blur(2px);
     cursor: pointer;
 }
 
 canvas {
     border-radius: 12px;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .vega-bindings {
@@ -64,7 +75,7 @@ canvas {
     margin: 10px;
 }
 
-#vis-topology__container > div::after {
+#graph__container > div::after {
     content: "";
     transform: translate(5px, 2.5px);
     position: absolute;
@@ -82,7 +93,7 @@ canvas {
     cursor: pointer;
 }
 
-#vis-topology__container>div::before {
+#graph__container>div::before {
     content: "";
     display: block;
     position: absolute;
@@ -95,8 +106,8 @@ canvas {
     z-index: 1;
 }
 
-#vis-topology__container>div {
-    cursor: pointer;
+#graph__container>div {
+    width: 70vw;
     margin-top: 50px;
     border: 2px solid #DDD;
     border-radius: 12px;
@@ -110,12 +121,15 @@ canvas {
     transition: all .2s ease-in;
 }
 
-#vis-topology__container>div:hover {
+#graph__container>div:hover {
 }
 
 .chart-wrapper {
     background: transparent !important;
     border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -140,12 +154,9 @@ canvas {
     height: 10vh;
 }
 
-#year-slider {
-    width: 50%;
-}
-
 
 .button {
+    margin: none;
     width: fit-content;
     padding: 10px 20px;
     border-radius: 4px;
@@ -166,4 +177,65 @@ canvas {
     -moz-user-select: none; 
     -ms-user-select: none; 
     user-select: none;
+}
+
+#rent__graph_container, #vis-topology__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#year-slider {
+    width: 50%;
+    margin: none;
+}
+
+#vis-topology__current-year {
+    padding: none;
+    height: 40px;
+}
+
+div#vis-topology {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: none !important;
+}
+
+#vis-toplogy__graph_container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#vis-toplogy__text, #rent-by-suburb-year-line-chart__text {
+    width: 35%;
+}
+
+#vis-toplogy__graph_container .chart-wrapper {
+    width: 100% !important;
+}
+
+#vis-toplogy__graph_container canvas {
+    width: 100%;
+}
+
+#rent-by-suburb-year-line-chart__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#rent-by-suburb-year-line-chart {
+    width: 50%;
+}
+
+
+#rent-by-suburb-year-line-chart__container .chart-wrapper {
+    width: 100% !important;
 }

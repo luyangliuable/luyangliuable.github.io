@@ -1,13 +1,16 @@
 // https://mapshaper.org/
 
+const rentBySuburbYear2 = housePriceVsSuburbComprehensive.filter(item => {
+    return item.rentPrice !== null;
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     let uniqueSuburbs = [...new Set(rentBySuburbYear.map(item => item.Suburb))];
 
     uniqueSuburbs.sort((a, b) => a.localeCompare(b));
 
     const rentBySuburbYearWithPopulation = rentBySuburbYear.map(item => {
-        // Extracting the year from the item's "Year" field
-        var yearKey = item.Year;  // Assuming the Year field is just the year part, like "2000"
+        var yearKey = item.Year; 
 
         if (populationByYearMelbourne[yearKey]) {
             return {
@@ -16,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 Population: populationByYearMelbourne[yearKey]
             };
         }
-        return item;  // Return the item unchanged if the year doesn't match
+        return item;
     });
 
     var rentBySuburbYearBubbleChart = {
