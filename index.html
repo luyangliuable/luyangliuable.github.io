@@ -16,6 +16,7 @@
 
     <script src="./scripts/util/nested-json-to-list-json.js"></script>
     <script src="./scripts/util/other.js"></script>
+    <script src="./scripts/util/fill-missing-data.js"></script>
 
     <script src="./scripts/global-scripts.js"></script>
     <script src="./scripts/vegalight-scripts.js"></script>
@@ -28,12 +29,16 @@
     </style>
   </head>
   <body>
-    <div id="vis-topology__container">
-      <div class="visualisation-item" id="vis-topology"></div>
-      <div class="visualisation-item" id="rent-by-suburb-year-line-chart"></div>
-      <div class="visualisation-item" id="rent-vs-house-price-for-suburbs"></div>
-      <div class="visualisation-item" id="rent-vs-house-price-for-suburbs"></div>
-      <div class="visualisation-item" id=""></div>
+      <div id="vis-topology__container">
+
+          <div>
+              <div class="visualisation-item" id="vis-topology"> </div>
+              <div id="vis-topology__current-year"></div>
+        </div>
+        <div class="visualisation-item" id="rent-by-suburb-year-line-chart"></div>
+        <div class="visualisation-item" id="rent-vs-house-price-for-suburbs"></div>
+        <div class="visualisation-item" id="rent-vs-house-price-for-suburbs"></div>
+        <div class="visualisation-item" id=""></div>
     </div>
   </body>
 </html>
