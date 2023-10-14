@@ -20,9 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     var rentBySuburbYearBubbleChart = {
-        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-        "width": 900,
-        "height": 450,
+        "$schema": graphSettings.schema,
+        "width": graphSettings.width,
+        "height": graphSettings.height,
         "title": "Average Price of Rent per Room vs Year by Suburb",
         "data": {
             "values": rentBySuburbYearWithPopulation

@@ -2,9 +2,9 @@
 
 document.addEventListener("DOMContentLoaded", function() {
     var topology = {
-        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-        "width": 800,
-        "height": 450,
+        "$schema": graphSettings.schema,
+        "width": graphSettings.width,
+        "height": graphSettings.height,
         "title": "Average House Prices by Suburb",
         "data": {
             "name": "suburbs",

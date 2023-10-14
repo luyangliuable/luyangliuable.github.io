@@ -2,19 +2,21 @@
 
 Luyang Liu, 279297955 Shaoshang Dong
 
-● A URL of your publicly accessible web page on GitHub that embeds the map that you created. Note that a link to the JSON definition of the map is not accepted; a URL of a HTML web page is required instead.
+A URL of your publicly accessible web page on GitHub that embeds the map that you created. Note that a link to the JSON definition of the map is not accepted; a URL of a HTML web page is required instead.
 
-https://luyangliuable.github.io/uni-vegalite
+https://luyangliuable.github.io/
 
-● A screen capture of your map.
-● One short bullet point for each of the following items:
-o The domain of your visualisation
+## A screen capture of your map.
 
-o The visualised dataset (attribute types, source and author, etc.)
+
+## The domain of your visualisation
+
+## The visualised dataset (attribute types, source and author, etc.)
 
 https://www.kaggle.com/datasets/dansbecker/melbourne-housing-snapshot/data
 
-Attribute types:
+## Attribute types:
+
 * Suburb
 * Address
 * Rooms
@@ -26,15 +28,16 @@ Attribute types:
 * Distance
 * Postcode
 
-Source:
-https://www.kaggle.com/datasets/dansbecker/melbourne-housing-snapshot/data
-
-Author:
-Tony Pino
-
-After preprocessing:
+## Attribute Types of Dataaset After Preprocessing:
 * Suburb
 * AvgPrice
+
+
+## Source:
+https://www.kaggle.com/datasets/dansbecker/melbourne-housing-snapshot/data
+
+## Author:
+Tony Pino
 
 * Data transformation that you applied (if any), such as normalisation by area or population.
   * Divided House Price by the number of rooms.

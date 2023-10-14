@@ -8,154 +8,32 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.12.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.1"></script>
 
-    <script src="./dataset/australiaTopology.js"></script>
-    <script src="./dataset/melbourne_topology.js"></script>
-    <script src="./dataset/topology.js"></script>
-    <script src="./dataset/rentBySuburbYear.js"></script>
-    <script src="./dataset/dataset.js"></script>
-    <script src="./dataset/vic_suburbs.js"></script>
-    <script src="./dataset/populationByYearMelbourne.js"></script>
+    <script src="./dataset/rent-by-suburb-year.js"></script>
+    <script src="./dataset/house-price-vs-suburb.js"></script>
+    <script src="./dataset/vic-suburbs.js"></script>
+    <script src="./dataset/population-vs-year-melbourne.js"></script>
+    <script src="./dataset/house-price-vs-suburb-comprehensive.js"></script>
 
+    <script src="./scripts/util/nested-json-to-list-json.js"></script>
+    <script src="./scripts/util/other.js"></script>
+
+    <script src="./scripts/global-scripts.js"></script>
     <script src="./scripts/vegalight-scripts.js"></script>
     <script src="./scripts/bubblechart-scripts.js"></script>
 
+
+    <link rel="stylesheet" href="style.css">
+
     <style media="screen">
-      .vega-actions a {
-        margin-right: 5px;
-      }
-
-      body {
-        background-image: url('https://w.wallhaven.cc/full/0p/wallhaven-0p5k9e.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
-      }
-
-      video {
-        z-index: -1;
-        top: 0;
-        left: 0;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      #vis-topology__container {
-        z-index: 1;
-        width: 100vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      #vis-topology__container * {
-        --bg-color: rgba(16, 18, 27, 40%);
-        --bg-color: rgba(200, 200, 200, 40%);
-        /* background: var(--bg-color); */
-        backdrop-filter: blur(20px);
-        cursor: pointer;
-      }
-
-      canvas {
-        border-radius: 12px;
-      }
-
-      .vega-bindings {
-        position: absolute;
-        top: -70px;
-        background: transparent;
-      }
-
-      .vega-bind select {
-        padding: 10px;
-        border: none;
-        border-radius: 4px;
-        position: relative;
-        margin: 10px;
-      }
-
-      #vis-topology__container > div::after {
-        content: "";
-        transform: translate(5px, 2.5px);
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        background-color: yellow;
-        border-radius: 50%;
-        text-align: center;
-        line-height: 30px;
-        font-size: 24px;
-        top: 0;
-        left: 0;
-        border: .2px solid #888;
-        z-index: 2;
-        cursor: pointer;
-      }
-
-      #vis-topology__container>div::before {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4%;
-        border-radius: 10px 10px 0px 0px;
-        background: #FFF;
-        z-index: 1;
-      }
-
-      #vis-topology__container>div {
-        cursor: pointer;
-        margin-top: 50px;
-        border: 2px solid #DDD;
-        border-radius: 12px;
-        padding: 100px;
-        --landing-page-card-intro-animation: animate-slide-up-fade-in .5s ease-in;
-        animation: var(--landing-page-card-intro-animation);
-        -moz-animation: var(--landing-page-card-intro-animation);
-        -webkit-animation: var(--landing-page-card-intro-animation);
-        -o-animation: var(--landing-page-card-intro-animation);
-        -ms-animation: var(--landing-page-card-intro-animation);
-        transition: all .2s ease-in;
-      }
-
-      #vis-topology__container>div:hover {
-        border: 2px solid #888;
-      }
-
-      .chart-wrapper {
-        background: transparent !important;
-        border-radius: 12px;
-      }
-
-
-      @keyframes animate-slide-up-fade-in {
-        0% {
-          transform: translateY(3vh);
-          opacity: 0
-        },
-        10% {
-          opacity: 1
-        },
-        100% {
-          transform: translateY(0);
-          opacity: 1
-        }
-      }
-
     </style>
   </head>
   <body>
-    <!-- <video width="320" height="240" autoplay loop muted> -->
-    <!--   <source src="https://assets.codepen.io/3364143/7btrrd.mp4" type="video/mp4"> -->
-    <!--   Your browser does not support the video tag. -->
-    <!-- </video> -->
     <div id="vis-topology__container">
-      <div id="vis-topology"></div>
-      <div id="rent-by-suburb-year-line-chart"></div>
+      <div class="visualisation-item" id="vis-topology"></div>
+      <div class="visualisation-item" id="rent-by-suburb-year-line-chart"></div>
+      <div class="visualisation-item" id="rent-vs-house-price-for-suburbs"></div>
+      <div class="visualisation-item" id="rent-vs-house-price-for-suburbs"></div>
+      <div class="visualisation-item" id=""></div>
     </div>
   </body>
 </html>
