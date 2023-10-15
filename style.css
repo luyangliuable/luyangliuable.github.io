@@ -1,5 +1,8 @@
 :root {
-    visualisation-width: ;
+    --visualisation-width: calc(50vw + 250px);
+    --visualisation-min-height: 450px;
+    --bg-color-dark: rgba(16, 18, 27, 40%);
+    --bg-color: rgba(200, 200, 200, 40%);
 }
 
 .vega-actions a {
@@ -49,17 +52,11 @@ video {
 }
 
 #graph__container>* {
-    --bg-color: rgba(16, 18, 27, 40%);
-    --bg-color: rgba(200, 200, 200, 40%);
     background: var(--bg-color);
     backdrop-filter: blur(2px);
     cursor: pointer;
 }
 
-canvas {
-    border-radius: 12px;
-    /* cursor: pointer; */
-}
 
 .vega-bindings {
     position: absolute;
@@ -75,23 +72,23 @@ canvas {
     margin: 10px;
 }
 
-#graph__container > div::after {
-    content: "";
-    transform: translate(5px, 2.5px);
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: yellow;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 30px;
-    font-size: 24px;
-    top: 0;
-    left: 0;
-    border: .2px solid #888;
-    z-index: 2;
-    cursor: pointer;
-}
+/* #graph__container > div::after { */
+/*     content: ""; */
+/*     transform: translate(5px, 2.5px); */
+/*     position: absolute; */
+/*     width: 20px; */
+/*     height: 20px; */
+/*     background-color: yellow; */
+/*     border-radius: 50%; */
+/*     text-align: center; */
+/*     line-height: 30px; */
+/*     font-size: 24px; */
+/*     top: 0; */
+/*     left: 0; */
+/*     border: .2px solid #888; */
+/*     z-index: 2; */
+/*     cursor: pointer; */
+/* } */
 
 #graph__container>div::before {
     content: "";
@@ -107,11 +104,13 @@ canvas {
 }
 
 #graph__container>div {
-    width: 70vw;
+    width: var(--visualisation-width);
+    max-width: 1200px;
+    min-height: var(--visualisation-min-height);
     margin-top: 50px;
     border: 2px solid #DDD;
     border-radius: 12px;
-    padding: 100px;
+    padding: 40px;
     --landing-page-card-intro-animation: animate-slide-up-fade-in .5s ease-in;
     animation: var(--landing-page-card-intro-animation);
     -moz-animation: var(--landing-page-card-intro-animation);
@@ -122,14 +121,6 @@ canvas {
 }
 
 #graph__container>div:hover {
-}
-
-.chart-wrapper {
-    background: transparent !important;
-    border-radius: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 
@@ -179,11 +170,19 @@ canvas {
     user-select: none;
 }
 
-#rent__graph_container, #vis-topology__container {
+.vis_container {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.vis__graph_container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #year-slider {
@@ -196,46 +195,85 @@ canvas {
     height: 40px;
 }
 
-div#vis-topology {
+.vis__graph_container>div {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-right: none !important;
+    padding: 0 38px;
 }
 
-#vis-toplogy__graph_container {
-    width: 50%;
+
+.text {
+    width: 35%;
+    overflow-wrap: break-word;
+}
+
+
+.vis__graph_container .chart-wrapper {
+    background: transparent !important;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100% !important;
+    padding: 0;
+    background: red;
+}
+
+.vis__graph_container canvas {
+    border-radius: 12px;
+    width: 100%;
+}
+
+.controller {
+    color: #FFF;
+    background: var(--bg-color-dark);
+    border: 1px 0px 1px 1px solid #DDD;
+    border-radius: 8px 0px 0px 8px;
+    width: fit-content;
+    min-height: calc(var(--visualisation-min-height) - 50px);
+    padding: 20px 30px;
+    position: absolute;
+    left: 0;
+    transform: translateX(calc( -100% - 2.5px ));
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-}
-
-#vis-toplogy__text, #rent-by-suburb-year-line-chart__text {
-    width: 35%;
-}
-
-#vis-toplogy__graph_container .chart-wrapper {
-    width: 100% !important;
-}
-
-#vis-toplogy__graph_container canvas {
-    width: 100%;
-}
-
-#rent-by-suburb-year-line-chart__container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
+    /* display: none; */
+    opacity: 0;
+    transition: opacity .1s ease-in;
 }
 
-#rent-by-suburb-year-line-chart {
-    width: 50%;
+.vis_container:hover .controller {
+    display: flex;
+    opacity: 1
+}
+
+@media (max-width: 1500px) {
+    .vis_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .text {
+        width: 65%;
+        margin-bottom: 100px;
+        overflow-wrap: break-word;
+    }
 }
 
 
-#rent-by-suburb-year-line-chart__container .chart-wrapper {
-    width: 100% !important;
+mjx-container {
+    display: inline-grid;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+}
+
+mjx-c {
+    font-size: 12px;
 }
