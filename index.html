@@ -20,6 +20,7 @@
         <script src="./dataset/population-vs-year-melbourne.js"></script>
         <script src="./dataset/house-price-vs-suburb-comprehensive.js"></script>
         <script src="./dataset/melbourne-suburb-classification-data.js"></script>
+        <script src="./dataset/melbourne-suburb-classification-data.js"></script>
 
         <script src="./scripts/util/nested-json-to-list-json.js"></script>
         <script src="./scripts/util/other.js"></script>
@@ -28,6 +29,7 @@
 
         <script src="./scripts/global-scripts.js"></script>
         <script src="./scripts/vegalight-scripts.js"></script>
+        <script src="./scripts/piechart-home-ownership-type.js"></script>
         <script src="./scripts/bubblechart-scripts.js"></script>
         <script src="./scripts/parallel-coord-script.js"></script>
 
@@ -47,50 +49,56 @@
                 </p>
             </div>
 
-            <div id="vis-topology__container">
-                <div id="vis-toplogy__text">
+            <div class="vis_container">
+                <div class="controller">
+                    <p>Animation</p>
+                    <div
+                        class="button noselect"
+                        id="visTopologyChartTemporalAnimationButton"
+                        onClick={toggleVisTopologyChartTemporalAnimation()}>Play
+                    </div>
+                </div>
+
+                <div class="text">
                     <p>
-                        In our data visualization, the average house price has been calculated through a process of normalization to provide a more nuanced perspective. Specifically, we took the total house price for each property and divided it by the number of rooms, thus generating a 'Price Per Room' metric.
+                        In our data visualization, the average house price has been calculated through a process of normalization to provide a more nuanced perspective. Specifically, we took the total house price for each property and divided it by the number of rooms, thus generating a <i><b>'Price Per Room'</b></i> metric.
                         <br /> 
                         <br /> 
                         The equation used for this is:
                         <br /> 
-                        \( \text{Average Price Per Room} = \frac{\text{Sum of (House Price/Number of Rooms)}}{\text{Total Number of Properties}} \)
+                            \( \text{Average Price Per Room} = \frac{\text{Sum of (House Price/Number of Rooms)}}{\text{Total Number of Properties}} \)
                         <br /> 
                         After obtaining this normalized value for each property, we then computed the average across all properties in various suburbs. This method allows for a more equitable comparison across Melbourne's diverse housing market.
                     </p>
                 </div>
 
-                <div id="vis-toplogy__graph_container">
+                <div class="vis__graph_container">
                     <div  id="vis-topology"></div>
                     <input
                         type="range"
                         min="2011"
                         max="2021"
-                        onChange={visTopologyYearOnChange(event)}
+                        onInput={visTopologyYearOnChange(event)}
                         value="2011"
                         class="slider"
                         id="year-slider"
                         step="1" />
                     <div id="vis-topology__current-year"></div>
-                    <div
-                        class="button noselect"
-                        id="visTopologyChartTemporalAnimationButton"
-                        onClick={toggleVisTopologyChartTemporalAnimation()}>Play</div>
                 </div>
             </div>
-
-            <div id="rent-by-suburb-year-line-chart__container">
-                <div id="rent-by-suburb-year-line-chart__text">
+            
+            <div class="vis_container">
+                <div class="text">
                     <p>
                         In Melbourne, the rental market is as dynamic as it is challenging for tenants. Known for its vibrant culture and booming job market, the city has seen a steady increase in rent prices over recent years.
-                        <br />
-                        <br />
+                        <div id="home-ownership-type-pie-chart">
+                            rent-by-suburb-year-line-chart
+                        </div>
                         While some suburbs offer relatively affordable options, prime locations in the city centre and coastal areas often come with exorbitant rental costs. In our data visualization, we've included a comprehensive breakdown of average rent prices by suburb to provide a clearer picture of what you can expect to pay. These figures reveal a pressing need for policy intervention to address housing affordability, especially as many residents already allocate a significant portion of their income towards rent.
                     </p>
                 </div>
-                <div id="rent-by-suburb-year-line-chart">
-                    <div>
+                <div class="vis__graph_container">
+                    <div id="rent-by-suburb-year-line-chart">
                         rent-by-suburb-year-line-chart
                     </div>
                 </div>

@@ -1,7 +1,16 @@
 const graphSettings = {
-    width: 800,
-    height: 450,
+    width: 400,
+    height: 250,
     schema: "https://vega.github.io/schema/vega-lite/v5.json"
 };
 
-// console.log(JSON.stringify(classifyData(housePriceVsSuburbComprehensive, melbourneSuburbClassificationData)));
+function resizeCanvasToParent() {
+    const canvases = document.querySelectorAll('canvas');
+
+    canvases.forEach((canvas) => {
+        var rect = canvas.parentNode.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+    });
+}
+
