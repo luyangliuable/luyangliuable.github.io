@@ -1,10 +1,5 @@
 const isotypeEmploymentYearOnChange = (e) => {
-    console.log(e.target.value);
-
     embedIsotypeEmploymentChart(parseInt( e.target.value ));
-    // UpdatevisTopologyYearDisplay(e.target.value);
-    // rerenderVisTopologyChart(e.target.value);
-    // currYearIdx = availableYears.indexOf(parseInt( e.target.value ));
 };   
 
 const embedIsotypeEmploymentChart = (year) => {
@@ -15,11 +10,11 @@ const embedIsotypeEmploymentChart = (year) => {
         const employmentFemales = Math.round(dataset["Employment Females"] / 100) * 100;
 
         for (var i = 0; i < employmentMales; i += 100) {
-            res.push({"classification": "Gender", "Gender": "Male", "col": i/100 + 1});
+            res.push({"classification": "Gender", "Gender": "Male", "Number of Employees (x100)": i/100 + 1});
         }
 
         for (var i = 0; i < employmentFemales; i += 100) {
-            res.push({"classification": "Gender", "Gender": "Female", "col": i/100 + 1});
+            res.push({"classification": "Gender", "Gender": "Female", "Number of Employees (x100)": i/100 + 1});
         }
 
         return res;
@@ -31,7 +26,7 @@ const embedIsotypeEmploymentChart = (year) => {
 
     var isotypeEmployment = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-        "width": 400,
+        "width": 800,
         "background": "transparent",
         "title": {
             "text": `Comparison of Male and Female Employment in Units of 100 Employees for Year ${year}`,
@@ -58,7 +53,12 @@ const embedIsotypeEmploymentChart = (year) => {
         "data": { values: isotypeEmploymentData },
         "mark": {"type": "text", "baseline": "middle", "color": "white"},
         "encoding": {
-            "x": {"field": "col", "type": "ordinal", "axis": {"grid": false}},
+            "x": {
+                "field": "Number of Employees (x100)",
+                "type": "quantitative",
+                "axis": {"grid": false},
+                "scale": { "domain": [0, 20] }
+            },
             "y": {"field": "Gender", "type": "ordinal", "axis": {"grid": false}},
             "text": {"field": "emoji", "type": "nominal"},
             "size": {"value": 50}

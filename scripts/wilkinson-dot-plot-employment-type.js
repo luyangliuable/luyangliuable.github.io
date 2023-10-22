@@ -1,54 +1,99 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var isotypeEmployment = 
-        {
-            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "width": 800,
-            "background": "transparent",
-            "title": "Employment Rate Male vs Females",
-            "config": graphSettings.config,
-            "height": 200,
-            "transform": [
-                {
-                    "calculate": "{'person': '🧍‍♂️', 'cattle': '🧍‍♀️', 'fulltime': '⏰', 'parttime': '⏳'}[datum.animal]",
-                    "as": "emoji"
-                },
-                {"window": [{"op": "rank", "as": "rank"}], "groupby": ["classification", "animal"]}
-            ],
-            "data": {
-                "values": [
-                    {"classification": "Gender", "animal": "cattle", "col": 3},
-                    {"classification": "Gender", "animal": "cattle", "col": 2},
-                    {"classification": "Gender", "animal": "cattle", "col": 1},
-                    {"classification": "Gender", "animal": "person", "col": 10},
-                    {"classification": "Gender", "animal": "person", "col": 5},
-                    {"classification": "Gender", "animal": "person", "col": 4},
-                    {"classification": "Gender", "animal": "person", "col": 3},
-                    {"classification": "Gender", "animal": "person", "col": 2},
-                    {"classification": "Gender", "animal": "person", "col": 1},
 
-                    // {"classification": "EmploymentType", "animal": "parttime", "col": 3},
-                    // {"classification": "EmploymentType", "animal": "parttime", "col": 2},
-                    // {"classification": "EmploymentType", "animal": "parttime", "col": 1},
-                    // {"classification": "EmploymentType", "animal": "fulltime", "col": 10},
-                    // {"classification": "EmploymentType", "animal": "fulltime", "col": 5},
-                    // {"classification": "EmploymentType", "animal": "fulltime", "col": 4},
-                    // {"classification": "EmploymentType", "animal": "fulltime", "col": 3},
-                    // {"classification": "EmploymentType", "animal": "fulltime", "col": 2},
-                    // {"classification": "EmploymentType", "animal": "fulltime", "col": 1}
-                ]
-            },
-            "mark": {"type": "text", "baseline": "middle"},
-            "encoding": {
-                "x": {"field": "col", "type": "ordinal", "axis": null},
-                "y": {"field": "animal", "type": "ordinal", "axis": null},
-                "row": {"field": "cassification", "type": "nominal", "header": {"title": ""}},
-                "text": {"field": "emoji", "type": "nominal"},
-                "size": {"value": 50}
+    const generateDotPlotValues = (dataset) => {
+        const res = [];
+
+        for (var eachYearItem of dataset) {
+            const year = eachYearItem.year;
+            const employmentFulltime = Math.round(eachYearItem["Employment Fulltime"] / 100) * 100;
+            const employmentParttime = Math.round(eachYearItem["Employment Parttime"] / 100) * 100;
+
+            for (var i = 0; i < employmentFulltime; i += 100) {
+                res.push({"year": year, "type": "Fulltime"});
+            }
+
+            for (var i = 0; i < employmentParttime; i += 100) {
+                res.push({"year": year, "type": "Parttime"});
             }
         };
 
+        return res;
+    };
 
-    vegaEmbed('#isotype-employment', isotypeEmployment);
+    const wilkinsonDotPlotEmploymentTypeData = generateDotPlotValues(employmentRate);
+
+    var wilkinsonDotPlotEmploymentType = 
+        {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "description": "A Wilkinson Dot Plot",
+            "width": 400,
+            "height": 500,
+            "background": "transparent",
+            "config": {
+                "legend": {
+                    "titleColor": "white",
+                    "labelColor": "white"
+                },
+                "view": {
+                    "strokeWidth": 0 
+                }
+            },            "title": {
+                "text": "Fulltime employment vs. Parttime employment",
+                "color": "#FFF"
+            },
+            "data": {
+                "values": wilkinsonDotPlotEmploymentTypeData
+            },
+            "transform": [
+                {
+                    "window": [{"op": "rank", "as": "id"}],
+                    "groupby": ["year", "type"]
+                }
+            ],
+            "mark": {
+                "type": "circle",
+                "opacity": 1
+            },
+            "encoding": {
+                "x": {
+                    "field": "year",
+                    "type": "ordinal",
+                    "axis": {
+                        "title": "Year",
+                        "titleColor": "#FFF",
+                        "labelColor": "#FFF",
+                        "tickColor": "#FFF",
+                        "domainColor": "#FFF"
+                    }
+                },
+                "y": {
+                    "field": "id",
+                    "type": "ordinal",
+                    "axis": {
+                        "title": "Number of Employees",
+                        "titleColor": "#FFF",
+                        "labelColor": "#FFF",
+                        "tickColor": "#FFF",
+                        "domainColor": "#FFF"
+                    },
+                    "sort": "descending"
+                },
+                "color": {
+                    "field": "type",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": ["Fulltime", "Parttime"],
+                        "range": ["#1e90ff", "#FFF"]
+                    }
+                },
+                "legend": {
+                    "titleColor": "#FFF",
+                    "labelColor": "#FFF"
+                }
+            }
+        };
+
+    vegaEmbed('#wilkinson-dot-plot-employment-type', wilkinsonDotPlotEmploymentType);
 });
 
 

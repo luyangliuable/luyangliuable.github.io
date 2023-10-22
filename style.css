@@ -219,6 +219,20 @@ video {
     flex-direction: column;
 }
 
+.space {
+    height: 10vh;
+}
+
+.wider-text {
+    margin: 10vh 0 10vh;
+    width: 70%;
+    max-width: 700px;
+    min-width: 500px
+    overflow-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+}
+
 
 .vis__graph_container .chart-wrapper {
     background: transparent !important;
@@ -386,3 +400,5 @@ label {
     justify-content: center;
     align-items: center;
 }
+
+.wider-text {}
