@@ -1,43 +1,46 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Vega-Lite Bar Chart</title>
-        <meta charset="utf-8" />
+    <title>Vega-Lite Bar Chart</title>
+    <meta charset="utf-8" />
 
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 
-        <script type="text/javascript" async
-                src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.12.0"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.1"></script>
-
-
-        <script src="./dataset/rent-by-suburb-year.js"></script>
-        <script src="./dataset/house-price-vs-suburb.js"></script>
-        <script src="./dataset/vic-suburbs.js"></script>
-        <script src="./dataset/population-vs-year-melbourne.js"></script>
-        <script src="./dataset/house-price-vs-suburb-comprehensive.js"></script>
-        <script src="./dataset/melbourne-suburb-classification-data.js"></script>
-        <script src="./dataset/melbourne-suburb-classification-data.js"></script>
-
-        <script src="./scripts/util/nested-json-to-list-json.js"></script>
-        <script src="./scripts/util/other.js"></script>
-        <script src="./scripts/util/fill-missing-data.js"></script>
-        <script src="./scripts/util/left-join-data.js"></script>
-
-        <script src="./scripts/global-scripts.js"></script>
-        <script src="./scripts/vegalight-scripts.js"></script>
-        <script src="./scripts/piechart-home-ownership-type.js"></script>
-        <script src="./scripts/bubblechart-scripts.js"></script>
-        <script src="./scripts/parallel-coord-script.js"></script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.12.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.1"></script>
 
 
-        <link rel="stylesheet" href="style.css">
+    <script src="./dataset/rent-by-suburb-year.js"></script>
+    <script src="./dataset/house-price-vs-suburb.js"></script>
+    <script src="./dataset/vic-suburbs.js"></script>
+    <script src="./dataset/population-vs-year-melbourne.js"></script>
+    <script src="./dataset/house-price-vs-suburb-comprehensive.js"></script>
+    <script src="./dataset/melbourne-suburb-classification-data.js"></script>
+    <script src="./dataset/most-liveable-city.js"></script>
+    <script src="./dataset/employment-rate.js"></script>
 
-        <style media="screen">
-        </style>
+    <script src="./scripts/util/nested-json-to-list-json.js"></script>
+    <script src="./scripts/util/other.js"></script>
+    <script src="./scripts/util/fill-missing-data.js"></script>
+    <script src="./scripts/util/left-join-data.js"></script>
+
+    <script src="./scripts/global-scripts.js"></script>
+    <script src="./scripts/vegalight-scripts.js"></script>
+    <script src="./scripts/piechart-home-ownership-type.js"></script>
+    <script src="./scripts/bubblechart-scripts.js"></script>
+    <script src="./scripts/parallel-coord-script.js"></script>
+    <script src="./scripts/bump-chart-most-liveable-city.js"></script>
+    <script src="./scripts/line-chart-employment.js"></script>
+    <script src="./scripts/isotype-employment.js"></script>
+
+
+    <link rel="stylesheet" href="style.css">
+
+    <style media="screen">
+    </style>
     </head>
     <body>
         <div id="graph__container">
@@ -55,25 +58,27 @@
                     <div
                         class="button noselect"
                         id="visTopologyChartTemporalAnimationButton"
-                        onClick={toggleVisTopologyChartTemporalAnimation()}>Play
+                        onClick={toggleVisTopologyChartTemporalAnimation()}>
+                        Play ▶
                     </div>
                 </div>
 
                 <div class="text">
                     <p>
+                        <h1>Normalised House Prices in Melbourne</h1>
                         In our data visualization, the average house price has been calculated through a process of normalization to provide a more nuanced perspective. Specifically, we took the total house price for each property and divided it by the number of rooms, thus generating a <i><b>'Price Per Room'</b></i> metric.
                         <br /> 
                         <br /> 
                         The equation used for this is:
                         <br /> 
-                            \( \text{Average Price Per Room} = \frac{\text{Sum of (House Price/Number of Rooms)}}{\text{Total Number of Properties}} \)
+                        \( \text{Average Price Per Room} = \frac{\text{Sum of (House Price/Number of Rooms)}}{\text{Total Number of Properties}} \)
                         <br /> 
                         After obtaining this normalized value for each property, we then computed the average across all properties in various suburbs. This method allows for a more equitable comparison across Melbourne's diverse housing market.
                     </p>
                 </div>
 
                 <div class="vis__graph_container">
-                    <div  id="vis-topology"></div>
+                    <div id="vis-topology"></div>
                     <input
                         type="range"
                         min="2011"
@@ -87,13 +92,12 @@
                 </div>
             </div>
             
-            <div class="vis_container">
+            <div class="vis_container" >
                 <div class="text">
+                    <h1>Home Ownership</h1>
                     <p>
                         In Melbourne, the rental market is as dynamic as it is challenging for tenants. Known for its vibrant culture and booming job market, the city has seen a steady increase in rent prices over recent years.
-                        <div id="home-ownership-type-pie-chart">
-                            rent-by-suburb-year-line-chart
-                        </div>
+                        <div id="home-ownership-type-pie-chart">rent-by-suburb-year-line-chart</div><br />
                         While some suburbs offer relatively affordable options, prime locations in the city centre and coastal areas often come with exorbitant rental costs. In our data visualization, we've included a comprehensive breakdown of average rent prices by suburb to provide a clearer picture of what you can expect to pay. These figures reveal a pressing need for policy intervention to address housing affordability, especially as many residents already allocate a significant portion of their income towards rent.
                     </p>
                 </div>
@@ -103,9 +107,118 @@
                     </div>
                 </div>
             </div>
-            <div id="parallel-coord-polot-rent-vs-house-price-for-suburbs"></div>
+
+            <div class="vis_container">
+                <div class="controller">
+                    <p>Choose</p>
+                    <div class="center-children">
+                        <div class="switch">
+                            <label for="Southern_Melbourne" class="label">Southern Melbourne</label>
+                            <input id="Southern_Melbourne" class="cm-toggle parallel-coord-select" type="checkbox" />
+                        </div>
+
+                        <div class="switch">
+                            <label for="Inner_Eastern_Melbourne" class="label">Inner Eastern Melbourne</label>
+                            <input id="Inner_Eastern_Melbourne" class="cm-toggle parallel-coord-select" type="checkbox" checked />
+                        </div>
+
+                        <div class="switch">
+                            <label for="Inner_Melbourne" class="label">Inner Melbourne</label>
+                            <input id="Inner_Melbourne" class="cm-toggle parallel-coord-select" type="checkbox" checked />
+                        </div>
+
+                        <div class="switch">
+                            <label for="Mornington_Peninsula" class="label">Mornington Peninsula</label>
+                            <input id="Mornington_Peninsula" class="cm-toggle parallel-coord-select" type="checkbox" />
+                        </div>
+
+                        <div class="switch">
+                            <label for="North_Eastern_Melbourne" class="label">North Eastern Melbourne</label>
+                            <input id="North_Eastern_Melbourne" class="cm-toggle parallel-coord-select" type="checkbox" checked />
+                        </div>
+
+                        <div class="switch">
+                            <label for="North_Western_Melbourne" class="label">North Western Melbourne</label>
+                            <input id="North_Western_Melbourne" class="cm-toggle parallel-coord-select" type="checkbox" />
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center">
+                    <div class="text" style="width: 80%">
+                        <h1>Rent vs. Price in Melbourne</h1>
+                        The parallel coordinate diagram showcases the relationship between home prices and rent prices in different Melbourne suburbs. Each line represents a suburb, and where these lines position between the home and rent axes indicates the costs for that area. Some suburbs, like Inner Melbourne, have higher costs for both buying and renting, while others, like Bendigo, show a more balanced pricing. This chart offers a quick comparison of housing costs across Melbourne, making it easier to understand the financial landscape of each suburb.
+                    </div>
+                    <div id="parallel-coord-polot-rent-vs-house-price-for-suburbs"></div>
+                </div>
+            </div>
+
+
+            <div class="vis_container">
+                <div class="controller">
+                    <p>Most Liveable City: Choose</p>
+                    <div>
+                        <div class="switch">
+                            <label for="Melbourne" class="label">Melbourne</label>
+                            <input id="Melbourne" class="cm-toggle bump-chart-select" type="checkbox" checked />
+                        </div>
+
+                        <div class="switch">
+                            <label for="Sydney" class="label">Sydney</label>
+                            <input id="Sydney" class="cm-toggle bump-chart-select" type="checkbox" checked />
+                        </div>
+
+                        <div class="switch">
+                            <label for="Vancouver" class="label">Vancouver</label>
+                            <input id="Vancouver" class="cm-toggle bump-chart-select" type="checkbox" checked />
+                        </div>
+
+                        <div class="switch">
+                            <label for="Vienna" class="label">Vienna</label>
+                            <input id="Vienna" class="cm-toggle bump-chart-select" type="checkbox" checked />
+                        </div>
+
+                        <div class="switch">
+                            <label for="Osaka" class="label">Osaka</label>
+                            <input id="Osaka" class="cm-toggle bump-chart-select" type="checkbox" checked />
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <div class="text" style="width: 70%">
+                        <h1>Melbourne is no Longer the Most Liveable City</h1>
+                        In recent years, Melbourne has seen a decline in its rank as the "most liveable city," a title it once proudly held. While the city continues to score high in areas such as healthcare, education, and culture, it has faced challenges that impact its liveability.
+                        <br /><br />
+                        Issues such as rising cost of living, urban congestion, and environmental concerns have played a role in its lowered ranking. Additionally, the global COVID-19 pandemic has shifted the metrics of liveability, placing a greater emphasis on healthcare infrastructure and crisis management, areas where other cities have outperformed Melbourne. As a result, cities like Vienna and Vancouver have overtaken Melbourne in the rankings.
+                    </div>
+                    <br /><bra/>
+                    <div id="most-liveable-city-bump-chart"></div><br />
+
+                    <div class="text" style="width: 70%">
+                        The employment rate in Melbourne has been on an upward trajectory, largely due to a booming tech industry and a surge in construction and infrastructure projects. Government initiatives to attract global businesses have also contributed to job creation, making the city an increasingly attractive hub for both employers and job-seekers.
+                    </div>
+                    <br /><br />
+                    <div id="line-chart-employment"></div><br />
+
+                    <div class="text" style="width: 70%">
+                        There are currently more males who are employed compared to females. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.  Donec hendrerit tempor tellus.  Donec pretium posuere tellus.  Proin quam nisl, tincidunt et, mattis eget, convallis nec, purus.  Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.  Nulla posuere.  Donec vitae dolor.  Nullam tristique diam non turpis.  Cras placerat accumsan nulla.  Nullam rutrum.  Nam vestibulum accumsan nisl.
+                        <br /><br />
+                    </div>
+                    <div id="isotype-employment"></div><br />
+                </div>
+            </div>
             <div id="isotype-apartment-vs-house-vs-townhouse-sold"></div>
-            <div id=""></div>
+            <div id="">
+                <div class="text" style="width: 80%">
+                    <h1>References</h1>
+                    <li>
+                        <ol>https://data.gov.au/dataset/ds-vic-fd720bba-22ee-45e0-b935-e89c829f0849/details?q=rent</ol>
+                        <ol>https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/mar-2023</ol>
+                        <ol>https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release</ol>
+                        <ol>https://en.wikipedia.org/wiki/Global_Liveability_Ranking</ol>
+                        <ol> https://auo.org.au/portal/metadata/urban-liveability-index/</ol>
+                    </li>
+                </div>
+            </div>
         </div>
     </body>
 </html>

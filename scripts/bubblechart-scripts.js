@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "$schema": graphSettings.schema,
         "width": graphSettings.width,
         "height": graphSettings.height,
+        "background": "transparent",
+        "config": graphSettings.config,
         "title": "Average Price of Rent per Room vs Year by Suburb",
         "data": {
             "values": rentBySuburbYearWithPopulation
@@ -46,6 +48,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }],
         "mark": "circle",
         "encoding": {
+            "color": {
+                "value": "lightgreen"
+            },
             "x": {
                 "field": "Year",
                 "type": "ordinal"
@@ -59,7 +64,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     // "range": [10, 1000]
                 },
                 "legend": {
-                    "title": "Population Size of Melbourne"
+                    "title": "Population Size of Melbourne",
+                    "orient": "bottom"
                 }
             },
             "y": {
