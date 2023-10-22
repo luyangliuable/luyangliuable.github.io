@@ -6,6 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "description": "A pie chart showing the distribution of home ownership in Melbourne",
+            "background": "transparent",
+            "config": graphSettings.config,
+            "autosize": {
+                "contains": "padding"
+            },
             "data": {
                 "values": [
                     {"Category": "Owned Outright", "Percent": 31},
@@ -14,10 +19,18 @@ document.addEventListener("DOMContentLoaded", function () {
                     {"Category": "Others", "Percent": 3.4}  // You can add this to make it sum to 100
                 ]
             },
-            "mark": "arc",
+            "mark": {
+                "type": "arc"
+            },
             "encoding": {
                 "theta": {"field": "Percent", "type": "quantitative"},
-                "color": {"field": "Category", "type": "nominal"}
+                "color": {
+                    "field": "Category",
+                    "type": "nominal",
+                    "legend": {
+                        // "orient": "bottom"
+                    }
+                }
             },
             "view": {"stroke": null}
         };

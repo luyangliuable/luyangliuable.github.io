@@ -1,5 +1,3 @@
-// https://mapshaper.org/
-
 let intervalId = null;
 let availableYears = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021];
 let currYearIdx = 0;
@@ -48,12 +46,12 @@ const toggleVisTopologyChartTemporalAnimation = (e) => {
             rerenderVisTopologyChart(availableYears[currYearIdx]);
         }, 500);
 
-        visTopologyChartTemporalAnimationButton.innerHTML = "Stop";
+        visTopologyChartTemporalAnimationButton.innerHTML = "Stop ⏸";
     } else {
         clearInterval(intervalId);
         intervalId = null;
 
-        visTopologyChartTemporalAnimationButton.innerHTML = "Play";
+        visTopologyChartTemporalAnimationButton.innerHTML = "Play ▶";
     }  
 };
 
@@ -61,6 +59,7 @@ function embedChart(dataForYear) {
     var topology = {
         "$schema": graphSettings.schema,
         "width": graphSettings.width,
+        "background": "transparent",
         "height": graphSettings.height,
         "title": "Average House Prices by Suburb",
         "data": {
@@ -68,6 +67,7 @@ function embedChart(dataForYear) {
             "values": vicSuburbs,
             "format": {"property": "features"}
         },
+        "config": graphSettings.config,
         "transform": [
             {
                 "lookup": "properties.Suburb",
@@ -113,7 +113,8 @@ function embedChart(dataForYear) {
                         "type": "quantitative",
                         "legend": {"title": "Average Price"},
                         "scale": {
-                            "domain": [500000, 8000000] // Set these values based on your full data range
+                            "domain": [500000, 8000000],
+                            reverse: true
                         }
                     },
                     "tooltip": [
