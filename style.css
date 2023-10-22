@@ -186,9 +186,16 @@ video {
     justify-content: center;
 }
 
-#year-slider {
-    width: 50%;
+.slider {
+    width: 500px;
     margin: none;
+}
+
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #vis-topology__current-year {
@@ -207,6 +214,20 @@ video {
 
 .text {
     width: 35%;
+    overflow-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+}
+
+.space {
+    height: 10vh;
+}
+
+.wider-text {
+    margin: 10vh 0 10vh;
+    width: 70%;
+    max-width: 700px;
+    min-width: 500px
     overflow-wrap: break-word;
     display: flex;
     flex-direction: column;
@@ -379,3 +400,5 @@ label {
     justify-content: center;
     align-items: center;
 }
+
+.wider-text {}

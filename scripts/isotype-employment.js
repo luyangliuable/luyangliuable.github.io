@@ -1,11 +1,35 @@
-document.addEventListener("DOMContentLoaded", function () {
+const isotypeEmploymentYearOnChange = (e) => {
+    embedIsotypeEmploymentChart(parseInt( e.target.value ));
+};   
+
+const embedIsotypeEmploymentChart = (year) => {
+    const generateIsotypeValues = (dataset) => {
+        const res = [];
+
+        const employmentMales = Math.round(dataset["Employment Males"] / 100) * 100;
+        const employmentFemales = Math.round(dataset["Employment Females"] / 100) * 100;
+
+        for (var i = 0; i < employmentMales; i += 100) {
+            res.push({"classification": "Gender", "Gender": "Male", "Number of Employees (x100)": i/100 + 1});
+        }
+
+        for (var i = 0; i < employmentFemales; i += 100) {
+            res.push({"classification": "Gender", "Gender": "Female", "Number of Employees (x100)": i/100 + 1});
+        }
+
+        return res;
+    };
+
+
+    const isotypeEmploymentData = generateIsotypeValues( employmentRate.filter(item => item.year === year)[0] );
+
 
     var isotypeEmployment = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "width": 800,
         "background": "transparent",
         "title": {
-            "text": "Employment Rate Male vs Females",
+            "text": `Comparison of Male and Female Employment in Units of 100 Employees for Year ${year}`,
             "color": "white"
         },
         "height": 200,
@@ -21,33 +45,29 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         "transform": [
             {
-                "calculate": "{'male': '🧍‍♂️', 'female': '🧍‍♀️'}[datum.gender]",
+                "calculate": "{'Male': '🧍‍♂️', 'Female': '🧍‍♀️'}[datum.Gender]",
                 "as": "emoji"
             },
-            {"window": [{"op": "rank", "as": "rank"}], "groupby": ["classification", "gender"]}
+            {"window": [{"op": "rank", "as": "rank"}], "groupby": ["classification", "Gender"]}
         ],
-        "data": {
-            "values": [
-                {"classification": "Gender", "gender": "female", "number of employees": 2},
-                {"classification": "Gender", "gender": "female", "number of employees": 1},
-                {"classification": "Gender", "gender": "male", "number of employees": 10},
-                {"classification": "Gender", "gender": "male", "number of employees": 5},
-                {"classification": "Gender", "gender": "male", "number of employees": 4},
-                {"classification": "Gender", "gender": "male", "number of employees": 3},
-                {"classification": "Gender", "gender": "male", "number of employees": 2},
-                {"classification": "Gender", "gender": "male", "number of employees": 1},
-            ]
-        },
+        "data": { values: isotypeEmploymentData },
         "mark": {"type": "text", "baseline": "middle", "color": "white"},
         "encoding": {
-            "x": {"field": "number of employees", "type": "ordinal", "axis": {"grid": false}},
-            "y": {"field": "gender", "type": "ordinal", "axis": {"grid": false}},
+            "x": {
+                "field": "Number of Employees (x100)",
+                "type": "quantitative",
+                "axis": {"grid": false},
+                "scale": { "domain": [0, 20] }
+            },
+            "y": {"field": "Gender", "type": "ordinal", "axis": {"grid": false}},
             "text": {"field": "emoji", "type": "nominal"},
             "size": {"value": 50}
         }
     };
 
     vegaEmbed('#isotype-employment', isotypeEmployment);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    embedIsotypeEmploymentChart(2000);
 });
-
-

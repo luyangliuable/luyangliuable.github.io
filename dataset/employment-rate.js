@@ -1,4 +1,4 @@
-const employmentRate=
+const employmentRate    =
 [
       {
         "year": 2000,

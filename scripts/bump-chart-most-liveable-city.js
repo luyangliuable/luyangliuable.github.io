@@ -69,8 +69,8 @@ function embedBumpChart(data) {
             "description": "A bump chart of the top 10 most liveable cities in the world.",
             "width": 800,
             "height": graphSettings.height,
-            "background": "transparent",
             "config": graphSettings.config,
+            "background": "transparent",
             "title": "Most Liveable City Around the World",
             "data": {
                 "values": filteredData
