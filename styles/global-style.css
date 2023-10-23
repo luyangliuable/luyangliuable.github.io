@@ -19,6 +19,10 @@ body {
     background-image: url('https://cdn.pixabay.com/photo/2021/07/15/08/43/abstract-6467846_1280.png');
     font-family: 'Open Sans', sans-serif;
     background-size: cover;
+    /* width: 100%; */
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -80,6 +84,7 @@ video {
     justify-content: center;
     align-items: center;
     position: relative;
+    margin: -20px 0px 20px 0px;
 }
 
 .slider__labels {

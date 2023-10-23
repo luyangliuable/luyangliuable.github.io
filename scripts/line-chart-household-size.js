@@ -3,30 +3,38 @@ document.addEventListener("DOMContentLoaded", function () {
     var lineChartHouseholdSize = 
         {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "description": "A multi-series line chart of employment data.",
+            title: "Household size over the years",
             "width": 800,
-            "background": "transparent",
             "height": graphSettings.height,
             "config": graphSettings.config,
+            "background": "transparent",
             "data": {
-                "values": employmentRate
+                "values": household_size
             },
-            "mark": "line",
+            "mark": "bar",
             "encoding": {
-                "x": {"field": "year", "type": "ordinal", "title": "Year"},
-                "y": {"field": "value", "type": "quantitative", "title": "Employment", "axis": {"grid": true}},
+                "x": {
+                    "field": "Year",
+                    "type": "ordinal",
+                    "axis": {
+                        "title": "Year"
+                    }
+                },
+                "y": {
+                    "field": "Population",
+                    "type": "quantitative",
+                    "axis": {
+                        "title": "Population"
+                    }
+                },
                 "color": {
-                    "field": "category",
+                    "field": "People",
                     "type": "nominal",
-                    "title": "Category"
+                    "legend": {
+                        "title": "People"
+                    }
                 }
-            },
-            "transform": [
-                {
-                    "fold": ["Employment", "Employment Males", "Employment Females", "Employment Fulltime", "Employment Parttime"],
-                    "as": ["category", "value"]
-                }
-            ]
+            }
         };
 
     vegaEmbed('#line-chart-household-size', lineChartHouseholdSize);

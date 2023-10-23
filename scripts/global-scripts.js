@@ -15,6 +15,9 @@ const graphSettings = {
             "labelColor": "white",
             "titleColor": "white"
         },
+        "view": {
+            "strokeWidth": 0 
+        },
         "legend": {
             "labelColor": "white",
             "titleColor": "white"
@@ -22,35 +25,26 @@ const graphSettings = {
     },
 };
 
-// function resizeCanvasToParent() {
-//     const canvases = document.querySelectorAll('canvas');
+console.log(household_size);
 
-//     canvases.forEach((canvas) => {
-//         var rect = canvas.parentNode.getBoundingClientRect();
-//         canvas.width = rect.width;
-//         canvas.height = rect.height;
-//     });
-// }
+// const r = [];
 
+// for (var eachItem of household_size) {
+//     const number_of_people = eachItem["Number of People"];
 
-// let transformedData = [];
-
-// employmentRate.forEach((item) => {
-//     const category = item.Year;
-//     delete item.Year;
-    
-//     for (const [key, value] of Object.entries(item)) {
-//         const year = parseInt(key.split('-')[1]);
-//         let existingEntry = transformedData.find((d) => d.year === year);
-        
-//         if (!existingEntry) {
-//             existingEntry = { year };
-//             transformedData.push(existingEntry);
-//         }
-
-//         existingEntry[category] = value;
+//     if ( number_of_people !== "Total") {
+//         Object.keys(eachItem).forEach((item) => {
+//             if (item !== 'Total' && item !== 'Number of People' && item !== 'Area') {
+//                 const number_of_actual_people = eachItem[item];
+//                 r.push({
+//                     People: number_of_people,
+//                     Population: number_of_actual_people,
+//                     Year: item
+//                 });
+//             }
+//         });
 //     }
-// });
 
-// console.log(JSON.stringify( transformedData ));
+// }
+// console.log(JSON.stringify(r));
 

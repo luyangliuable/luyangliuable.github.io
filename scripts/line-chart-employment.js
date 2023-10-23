@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var lineChartEmployment = 
         {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "description": "A multi-series line chart of employment data.",
+            "description": "A Multi-Series Line Chart of Employment Data.",
             "width": 800,
             "background": "transparent",
             "height": graphSettings.height,
@@ -13,8 +13,17 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             "mark": "line",
             "encoding": {
-                "x": {"field": "year", "type": "ordinal", "title": "Year"},
-                "y": {"field": "value", "type": "quantitative", "title": "Employment", "axis": {"grid": true}},
+                "x": {
+                    "field": "year",
+                    "type": "ordinal",
+                    "title": "Year"
+                },
+                "y": {
+                    "field": "value",
+                    "type": "quantitative",
+                    "title": "Employment (x100)",
+                    "axis": {"grid": false}
+                },
                 "color": {
                     "field": "category",
                     "type": "nominal",
@@ -23,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             "transform": [
                 {
-                    "fold": ["Employment", "Employment Males", "Employment Females", "Employment Fulltime", "Employment Parttime"],
+                    "fold": ["Employment", "Employment Fulltime", "Employment Parttime"],
                     "as": ["category", "value"]
                 }
             ]

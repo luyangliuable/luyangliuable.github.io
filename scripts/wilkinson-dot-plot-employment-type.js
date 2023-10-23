@@ -81,9 +81,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 "color": {
                     "field": "type",
                     "type": "nominal",
-                    "scale": {
-                        "domain": ["Fulltime", "Parttime"],
-                        "range": ["#1e90ff", "#FFF"]
+                    "domain": {
+                        "scale": ["Fulltime", "Parttime"],
+                        "range": ["#1e90ff", "orange"]
                     }
                 },
                 "legend": {
