@@ -10,11 +10,11 @@ const embedIsotypeEmploymentChart = (year) => {
         const employmentFemales = Math.round(dataset["Employment Females"] / 100) * 100;
 
         for (var i = 0; i < employmentMales; i += 100) {
-            res.push({"classification": "Gender", "Gender": "Male", "Number of Employees (x100)": i/100 + 1});
+            res.push({"classification": "Gender", "Gender": "Male", "Number of Employees (x10000)": i/100 + 1});
         }
 
         for (var i = 0; i < employmentFemales; i += 100) {
-            res.push({"classification": "Gender", "Gender": "Female", "Number of Employees (x100)": i/100 + 1});
+            res.push({"classification": "Gender", "Gender": "Female", "Number of Employees (x10000)": i/100 + 1});
         }
 
         return res;
@@ -33,16 +33,7 @@ const embedIsotypeEmploymentChart = (year) => {
             "color": "white"
         },
         "height": 200,
-        "config": {
-            "axis": {
-                "labelColor": "white",
-                "titleColor": "white"
-            },
-            "legend": {
-                "labelColor": "white",
-                "titleColor": "white"
-            }
-        },
+        "config": graphSettings.config,
         "transform": [
             {
                 "calculate": "{'Male': '🧍‍♂️', 'Female': '🧍‍♀️'}[datum.Gender]",
@@ -54,7 +45,7 @@ const embedIsotypeEmploymentChart = (year) => {
         "mark": {"type": "text", "baseline": "middle", "color": "white"},
         "encoding": {
             "x": {
-                "field": "Number of Employees (x100)",
+                "field": "Number of Employees (x10000)",
                 "type": "quantitative",
                 "axis": {"grid": false},
                 "scale": { "domain": [0, 20] }

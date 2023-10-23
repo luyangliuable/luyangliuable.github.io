@@ -34,3 +34,9 @@
 
 #graph__container>div:hover {
 }
+
+.card-image--author-image {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+}

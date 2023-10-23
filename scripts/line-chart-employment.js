@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var lineChartEmployment = 
         {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "description": "A multi-series line chart of employment data.",
+            "title": "Employment Rate Male vs. Females",
             "width": 800,
             "background": "transparent",
             "height": graphSettings.height,
@@ -11,20 +11,62 @@ document.addEventListener("DOMContentLoaded", function () {
             "data": {
                 "values": employmentRate
             },
-            "mark": "line",
             "encoding": {
-                "x": {"field": "year", "type": "ordinal", "title": "Year"},
-                "y": {"field": "value", "type": "quantitative", "title": "Employment", "axis": {"grid": true}},
+                "x": {
+                    "field": "year",
+                    "type": "ordinal",
+                    "title": "Year",
+                    "axis": {
+                        "grid": true,
+                        "gridDash": [3, 3],
+                        "gridWidth": 0.5
+                    }
+                },
+                "y": {
+                    "field": "value",
+                    "type": "quantitative",
+                    "title": "Employment (x100)",
+                    "axis": {
+                        "grid": true,
+                        "gridDash": [3, 3],
+                        "gridWidth": 0.5
+                    }
+                },
                 "color": {
                     "field": "category",
                     "type": "nominal",
-                    "title": "Category"
+                    "title": "Category",
+                    "legend": {
+                        "symbolType": "circle",
+                        "orient": "bottom"
+                    }
                 }
             },
-            "transform": [
+            "layer": [
                 {
-                    "fold": ["Employment", "Employment Males", "Employment Females", "Employment Fulltime", "Employment Parttime"],
-                    "as": ["category", "value"]
+                    "mark": "line",
+                    "transform": [
+                        {
+                            "fold": ["Employment", "Employment Fulltime", "Employment Parttime"],
+                            "as": ["category", "value"]
+                        }
+                    ]
+                },
+                {
+                    "mark": "point",
+                    "transform": [
+                        {
+                            "fold": ["Employment", "Employment Fulltime", "Employment Parttime"],
+                            "as": ["category", "value"]
+                        }
+                    ],
+                    "encoding": {
+                        "tooltip": [
+                            {"field": "year", "type": "ordinal", "title": "Year"},
+                            {"field": "value", "type": "quantitative", "title": "Employment Rate"},
+                            {"field": "category", "type": "nominal", "title": "Category"}
+                        ]
+                    }
                 }
             ]
         };

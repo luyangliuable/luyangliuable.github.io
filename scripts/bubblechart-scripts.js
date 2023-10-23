@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "$schema": graphSettings.schema,
         "width": graphSettings.width,
         "height": graphSettings.height,
-        "background": "transparent",
         "config": graphSettings.config,
+        "background": "transparent",
         "title": "Average Price of Rent per Room vs Year by Suburb",
         "data": {
             "values": rentBySuburbYearWithPopulation
