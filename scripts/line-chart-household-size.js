@@ -33,7 +33,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     "legend": {
                         "title": "People"
                     }
-                }
+                },
+                "tooltip": [
+                    {"field": "Year", "type": "ordinal", "title": "Year"},
+                    {"field": "Population", "type": "quantitative", "title": "Population"},
+                    {"field": "People", "type": "nominal", "title": "People"}
+                ]
             }
         };
 

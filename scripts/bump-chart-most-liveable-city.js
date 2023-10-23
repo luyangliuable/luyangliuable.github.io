@@ -85,10 +85,22 @@ function embedBumpChart(data) {
                         }
                     },
                     "encoding": {
-                        "x": {"field": "Year", "type": "ordinal"},
+                        "x": {
+                            "field": "Year", "type": "ordinal",
+                            "axis": {
+                                "grid": true,
+                                "gridDash": [3, 3],
+                                "gridWidth": 0.5
+                            }
+                        },
                         "y": {
                             "field": "Rank",
                             "type": "ordinal",
+                            "axis": {
+                                "grid": true,
+                                "gridDash": [3, 3],
+                                "gridWidth": 0.5
+                            },
                             "sort": "descending",
                             "scale": {
                                 "domain": [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
@@ -111,11 +123,20 @@ function embedBumpChart(data) {
                         "type": "text"
                     },
                     "encoding": {
-                        "x": {"field": "Year", "type": "ordinal"},
+                        "x": {
+                            "field": "Year",
+                            "type": "ordinal",
+                            "axis": {
+                                "grid": false
+                            }
+                        },
                         "y": {
                             "field": "Rank",
                             "type": "ordinal",
-                            "sort": "descending"
+                            "sort": "descending",
+                            "axis": {
+                                "grid": false
+                            }
                         },
                         "text": {
                             "condition": {

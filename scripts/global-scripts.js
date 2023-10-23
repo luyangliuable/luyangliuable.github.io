@@ -25,26 +25,40 @@ const graphSettings = {
     },
 };
 
-console.log(household_size);
+const t = 
+      {
+          "2000": 6.6,
+          "2001": 5.9,
+          "2002": 6.5,
+          "2003": 5.6,
+          "2004": 5.4,
+          "2005": 5.5,
+          "2006": 5.3,
+          "2007": 4.9,
+          "2008": 4.5,
+          "2009": 5.2,
+          "2010": 5.3,
+          "2011": 4.9,
+          "2012": 5.3,
+          "2013": 5.7,
+          "2014": 6.3,
+          "2015": 6.4,
+          "2016": 5.9,
+          "2017": 6,
+          "2018": 5.6,
+          "2019": 4.6,
+          "2020": 4.9,
+          "2021": 6.2,
+          "2022": 4.2,
+          "2023": 3.7
+      };
 
-// const r = [];
+const r = [];
 
-// for (var eachItem of household_size) {
-//     const number_of_people = eachItem["Number of People"];
+Object.keys(t).forEach(year => {
+    const unemployment_rate = t[year];
 
-//     if ( number_of_people !== "Total") {
-//         Object.keys(eachItem).forEach((item) => {
-//             if (item !== 'Total' && item !== 'Number of People' && item !== 'Area') {
-//                 const number_of_actual_people = eachItem[item];
-//                 r.push({
-//                     People: number_of_people,
-//                     Population: number_of_actual_people,
-//                     Year: item
-//                 });
-//             }
-//         });
-//     }
+    r.push({Year: year, "Unemployment Rate": unemployment_rate});
+});
 
-// }
-// console.log(JSON.stringify(r));
-
+console.log(JSON.stringify(r));

@@ -37,6 +37,7 @@
     <script src="./scripts/isotype-employment.js"></script>
     <script src="./scripts/wilkinson-dot-plot-employment-type.js"></script>
     <script src="./scripts/line-chart-household-size.js"></script>
+    <script src="./scripts/line-chart-unemployment-rate.js"></script>
 
 
     <link rel="stylesheet" href="style.css">
@@ -50,12 +51,24 @@
         <div id="graph__container">
             <div>
                 <h1>Melbourne Housing Landscape: House Prices, Rental Cisis and Property Type</h1>
-                <p style="font-size: 12px">Luyang Liu</p>
+                <div style="display: flex; flex-direction: row; align-items: center">
+                    <img class="card-image--author-image" src="http://llcode.tech/api/image/65194be0f9b642fb30be59af">
+                    <p style="font-size: 12px; margin-left: 7px;">Luyang Liu</p>
+                </div>
                 <div class="space"></div>
                 <p>
                     Welcome to 'The Anatomy of <b>Melbourne’s Housing Market</b>: From <b>Housing Crisis</b> to <b>Home Ownership</b>.' This visualization explores the contrasting realities of Melbourne's housing landscape.<br /><br />
                     From skyrocketing house and rent prices in various suburbs to the city's homelessness crisis, we delve into multiple facets of the market. Aimed at policymakers, real estate professionals, and residents, our data offers a comprehensive look at Melbourne's complex housing ecosystem
                 </p>
+
+                <div class="space"></div>
+                <a href="https://github.com/luyangliuable">
+                    <img src="https://img.shields.io/badge/github-%2312100E.svg?&style=for-the-badge&logo=github&logoColor=white&color=black" />
+                </a>
+
+                <a href="https://www.linkedin.com/in/luyang-l">
+                    <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />
+                </a>
             </div>
 
 
@@ -209,6 +222,11 @@
                 <div class="wider-text">
                     The employment rate in Melbourne has been on an upward trajectory, largely due to a booming tech industry and a surge in construction and infrastructure projects. Government initiatives to attract global businesses have also contributed to job creation, making the city an increasingly attractive hub for both employers and job-seekers.
                 </div>
+                <div class="space"></div>
+                <div id="line-chart-unemployment-rate"></div>
+                <div class="wider-text">
+                    The data provided showcases the fluctuation in unemployment rates in Melbourne from the year 2000 to 2023. In 2000, the unemployment rate started at a relatively high 6.6%, but showed a generally decreasing trend for the first decade, reaching a low of 4.5% in 2008. This decline was interrupted by spikes in 2002 and 2009, presumably due to economic conditions at the time.
+                </div>
             </div>
 
             <!---------------------------------------------------------------->
@@ -317,7 +335,8 @@
                         <ol>https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/mar-2023</ol>
                         <ol>https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release</ol>
                         <ol>https://en.wikipedia.org/wiki/Global_Liveability_Ranking</ol>
-                        <ol> https://auo.org.au/portal/metadata/urban-liveability-index/</ol>
+                        <ol>https://auo.org.au/portal/metadata/urban-liveability-index</ol>
+                        <ol>https://labourmarketinsights.gov.au/regions/data-downloads/employment-regions-downloads/</ol>
                     </li>
                 </div>
             </div>
