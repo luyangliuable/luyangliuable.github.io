@@ -24,7 +24,8 @@ const embedIsotypeEmploymentChart = (year) => {
     const isotypeEmploymentData = generateIsotypeValues( employmentRate.filter(item => item.year === year)[0] );
 
 
-    var isotypeEmployment = {
+    var isotypeEmployment =
+        {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "width": 800,
         "background": "transparent",
@@ -57,7 +58,7 @@ const embedIsotypeEmploymentChart = (year) => {
     };
 
     vegaEmbed('#isotype-employment', isotypeEmployment);
-}
+};
 
 document.addEventListener("DOMContentLoaded", function () {
     embedIsotypeEmploymentChart(2000);

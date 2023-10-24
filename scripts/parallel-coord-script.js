@@ -1,118 +1,155 @@
 function embedParallelCoordChart(data) {
 
-    const parallelCoordChart = {
-        "$schema": graphSettings.schema,
-        "width": 1000,
-        "height": graphSettings.height + 500,
-        "config": {
-            ...graphSettings.config,
-            "axisX": {"domain": false, "labelAngle": 0, "tickColor": "#ccc", "title": null},
-            "view": {"stroke": null},
-            "style": {
-                "label": {"baseline": "middle", "align": "right", "dx": -5},
-                "tick": {"orient": "horizontal"}
-            }
-        },
-        "background": "transparent",
-        "description": "Though Vega-Lite supports only one scale per axes, one can create a parallel coordinate plot by folding variables, using `joinaggregate` to normalize their values and using ticks and rules to manually create axes.",
-        "title": "Home Prices vs Rent Prices",
-        "data": {
-            "values": data
-        },
-        // Transformations
-        "transform": [
-            {"filter": "datum['Year'] === 2021"}, // Filter data by year 2021
-            {"window": [{"op": "count", "as": "index"}]}, // Add an index to data
-            {"fold": ["Price", "RentPrice"]}, // Fold Price and RentPrice into a single variable
-            {
-                // Join aggregate to calculate min and max for each 'key'
-                "joinaggregate": [
-                    {"op": "min", "field": "value", "as": "min"},
-                    {"op": "max", "field": "value", "as": "max"}
-                ],
-                "groupby": ["key"] // Group by key
-            },
-            {
-                // Normalize the values
-                "calculate": "(datum.value - datum.min) / (datum.max-datum.min)",
-                "as": "norm_val"
-            },
-            {
-                // Calculate mid-point between min and max
-                "calculate": "(datum.min + datum.max) / 2",
-                "as": "mid"
-            }
-        ],
-        "layer": [{
-            "mark": {"type": "rule", "color": "#ccc"},
-            "encoding": {
-                "detail": {"aggregate": "count"},
-                "x": {"field": "key"}
-            }
-        }, {
-            "mark": "line",
-            "encoding": {
-                "detail": {"type": "nominal", "field": "index"},
-                "color": {
-                    "field": "Classification",
-                    "type": "nominal",
-                    "legend": {
-                        "title": "Classification",
-                        "orient": "bottom"
-                    }
-                },
-                "opacity": {"value": 0.3},
-                "x": {"type": "nominal", "field": "key"},
-                "y": {"type": "quantitative", "field": "norm_val", "axis": null},
-                "tooltip": [{
-                    "type": "quantitative",
-                    "field": "Price"
-                }, {
-                    "type": "quantitative",
-                    "field": "RentPrice"
-                }]
-            }
-        }, {
-            "encoding": {
-                "x": {"type": "nominal", "field": "key"},
-                "y": {"value": 0}
-            },
-            "layer": [{
-                "mark": {"type": "text", "style": "label"},
-                "encoding": {
-                    "text": {"aggregate": "max", "field": "max"}
-                }
-            }, {
-                "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
-            }]
-        }, {
-            "encoding": {
-                "x": {"type": "nominal", "field": "key"},
-                "y": {"value": 150}
-            },
-            "layer": [{
-                "mark": {"type": "text", "style": "label"},
-                "encoding": {
-                    "text": {"aggregate": "min", "field": "mid"}
-                }
-            }, {
-                "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
-            }]
-        }, {
-            "encoding": {
-                "x": {"type": "nominal", "field": "key"},
-                "y": {"value": 300}
-            },
-            "layer": [{
-                "mark": {"type": "text", "style": "label"},
-                "encoding": {
-                    "text": {"aggregate": "min", "field": "min"}
-                }
-            }, {
-                "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
-            }]
-        }],
-    };
+    const parallelCoordChart =
+          {
+              "$schema": graphSettings.schema,
+              "width": 1050,
+              "height": graphSettings.height + 500,
+              "config": {
+                  ...graphSettings.config,
+                  "axisX": {"domain": false, "labelAngle": 0, "tickColor": "#ccc", "title": null},
+                  "view": {"stroke": null},
+                  "style": {
+                      "label": {"baseline": "middle", "align": "right", "dx": -5},
+                      "tick": {"orient": "horizontal"}
+                  }
+              },
+              "background": "transparent",
+              "description": "Though Vega-Lite supports only one scale per axes, one can create a parallel coordinate plot by folding variables, using `joinaggregate` to normalize their values and using ticks and rules to manually create axes.",
+              "title": "Home Prices vs Rent Prices",
+              "data": {
+                  "values": data
+              },
+              "transform": [
+                  {"filter": "datum['Year'] === 2021"},
+                  {"window": [{"op": "count", "as": "index"}]}, // Add an index to data
+                  {"fold": ["Price", "RentPrice"]},
+                  {
+                      "joinaggregate": [
+                          {"op": "min", "field": "value", "as": "min"},
+                          {"op": "max", "field": "value", "as": "max"}
+                      ],
+                      "groupby": ["key"]
+                  },
+                  {
+                      "calculate": "(datum.value - datum.min) / (datum.max-datum.min)",
+                      "as": "norm_val"
+                  },
+                  {
+                      "calculate": "(datum.min + datum.max) / 2",
+                      "as": "mid"
+                  }
+              ],
+              "layer": [
+                  {
+                      "mark": {"type": "rule", "color": "#ccc"},
+                      "encoding": {
+                          "detail": {"aggregate": "count"},
+                          "x": {"field": "key"}
+                      }
+                  },
+
+                  {
+                      "mark": "line",
+                      "encoding": {
+                          "color": {
+                              "type": "nominal",
+                              "field": "Classification",
+                              "legend": {
+                                  "title": "Classification",
+                                  "orient": "bottom"
+                              }
+                          },
+                          "detail": {"type": "nominal", "field": "index"},
+                          "opacity": {"value": 0.3},
+                          "x": {"type": "nominal", "field": "key"},
+                          "y": {"type": "quantitative", "field": "norm_val", "axis": null},
+                          "strokewidth": {"value": .5}
+                      },
+                  },
+
+
+                  {
+                      "mark": "line",
+                      "encoding": {
+                          "color": {value: "white"},
+                          "detail": {"type": "nominal", "field": "index"},
+                          "opacity": {"condition": {"selection": "hover", "value": 1}, "value": 0},
+                          "x": {"type": "nominal", "field": "key"},
+                          "y": {"type": "quantitative", "field": "norm_val", "axis": null},
+                      },
+                      "tooltip": [{
+                          "type": "quantitative",
+                          "field": "Price"
+                      }, {
+                          "type": "quantitative",
+                          "field": "RentPrice"
+                      }],
+                      "selection": {
+                          "hover": {"type": "single", "on": "mouseover", "nearest": false, "empty": "none"}
+                      }
+                  },
+
+                  // {
+                  //     "mark": {"type": "point", "filled": true},
+                  //     "encoding": {
+                  //         "x": {"type": "nominal", "field": "key"},
+                  //         "y": {"type": "quantitative", "field": "norm_val", "axis": null},
+                  //         "color": {"value": "#FFF"},
+                  //         "size": {"condition": {"selection": "hover", "value": 100}, "value": 5}
+                  //     },
+                  //     "selection": {
+                  //         "hover": {"type": "single", "on": "mouseover", "nearest": true, "empty": "none"}
+                  //     }
+                  // },
+
+                  {
+                      "encoding": {
+                          "x": {"type": "nominal", "field": "key"},
+                          "y": {"value": 0}
+                      },
+                      "layer": [{
+                          "mark": {"type": "text", "style": "label"},
+                          "encoding": {
+                              "text": {"aggregate": "max", "field": "max"}
+                          }
+                      }, {
+                          "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
+                      }]
+                  },
+
+                  {
+                      "encoding": {
+                          "x": {"type": "nominal", "field": "key"},
+                          "y": {"value": 360}
+                      },
+                      "layer": [{
+                          "mark": {"type": "text", "style": "label"},
+                          "encoding": {
+                              "text": {"aggregate": "min", "field": "mid"}
+                          }
+                      }, {
+                          "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
+                      }]
+                  },
+
+                  {
+                      "encoding": {
+                          "x": {"type": "nominal", "field": "key"},
+                          "y": {"value": 750}
+                      },
+                      "layer": [{
+                          "mark": {"type": "text", "style": "label"},
+                          "encoding": {
+                              "text": {"aggregate": "min", "field": "min"}
+                          }
+                      }, {
+                          "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
+                      }]
+                  },
+                  
+              ],
+          };
 
     vegaEmbed('#parallel-coord-polot-rent-vs-house-price-for-suburbs', parallelCoordChart);
 }

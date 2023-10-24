@@ -115,7 +115,12 @@ function embedBumpChart(data) {
                                 "domain": Object.keys(colorMap),
                                 "range": Object.values(colorMap)
                             }
-                        }
+                        },
+                        "tooltip": [
+                            {"field": "Year", "type": "ordinal"},
+                            {"field": "Rank", "type": "ordinal"},
+                            {"field": "City", "type": "nominal"}
+                        ]
                     }
                 },
                 {

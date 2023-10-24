@@ -24,7 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     "field": "Population",
                     "type": "quantitative",
                     "axis": {
-                        "title": "Population"
+                        "title": "Population",
+                        "grid": true,
+                        // "gridDash": [3, 3],
+                        "gridWidth": 0.2
                     }
                 },
                 "color": {
