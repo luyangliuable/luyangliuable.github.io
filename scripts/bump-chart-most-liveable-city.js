@@ -1,11 +1,22 @@
-const colorMap = {
-    'Osaka': '#1f77b4',    // Blue
-    'Vienna': '#ff7f0e',   // Orange
-    'Vancouver': '#2ca02c',// Green
-    'Sydney': '#d62728',   // Red
-    'Melbourne': '#9467bd' // Purple
+const originalColorMap = {
+    'Osaka': '#1F77B4',       
+    'Vienna': '#FF7F0E',      
+    'Vancouver': '#2CA02C',   
+    'Sydney': '#D62728',      
+    'Melbourne': '#9467BD',   
+
+    'Brisbane': '#8C564B',    
+    'Hamburg': '#E377C2',     
+    'Wellington': '#BCBD22',  
+    'Tokyo': '#17BECF',       
+
+    'Helsinki': '#7F7F7F',    
+    'Copenhagen': '#Bcbd91',  
+    'Zurich': '#D6616B',     
+    'Adelaide': '#1e90ff'
 };
 
+const colorMap = {};
 
 function filterBumpChartData() {
     checkedSuburbs = new Set();
@@ -13,9 +24,11 @@ function filterBumpChartData() {
     const checkboxes = document.querySelectorAll('.bump-chart-select');
 
     checkboxes.forEach((checkbox) => {
+        const city = checkbox.id.replace(/_/g, ' ');
+
         if (checkbox.checked) {
-            const city = checkbox.id.replace(/_/g, ' ');
             checkedSuburbs.add(city);
+            colorMap[city] = originalColorMap[city];
         }
     });
 

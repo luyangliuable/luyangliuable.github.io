@@ -1,3 +1,11 @@
+let parallelCoordinatecurrentYear = 2011;
+
+const updateParallelCoordinatecurrentYear = (event) => {
+    parallelCoordinatecurrentYear = parseInt( event.target.value );
+
+    filterData();
+};
+
 function embedParallelCoordChart(data) {
 
     const parallelCoordChart =
@@ -21,8 +29,8 @@ function embedParallelCoordChart(data) {
                   "values": data
               },
               "transform": [
-                  {"filter": "datum['Year'] === 2021"},
-                  {"window": [{"op": "count", "as": "index"}]}, // Add an index to data
+                  {"filter": `datum['Year'] === ${parallelCoordinatecurrentYear}`},
+                  {"window": [{"op": "count", "as": "index"}]},
                   {"fold": ["Price", "RentPrice"]},
                   {
                       "joinaggregate": [
@@ -64,7 +72,14 @@ function embedParallelCoordChart(data) {
                           "opacity": {"value": 0.3},
                           "x": {"type": "nominal", "field": "key"},
                           "y": {"type": "quantitative", "field": "norm_val", "axis": null},
-                          "strokewidth": {"value": .5}
+                          "strokewidth": {"value": .5},
+                          "tooltip": [{
+                              "type": "quantitative",
+                              "field": "Price"
+                          }, {
+                              "type": "quantitative",
+                              "field": "RentPrice"
+                          }],
                       },
                   },
 
@@ -89,19 +104,6 @@ function embedParallelCoordChart(data) {
                           "hover": {"type": "single", "on": "mouseover", "nearest": false, "empty": "none"}
                       }
                   },
-
-                  // {
-                  //     "mark": {"type": "point", "filled": true},
-                  //     "encoding": {
-                  //         "x": {"type": "nominal", "field": "key"},
-                  //         "y": {"type": "quantitative", "field": "norm_val", "axis": null},
-                  //         "color": {"value": "#FFF"},
-                  //         "size": {"condition": {"selection": "hover", "value": 100}, "value": 5}
-                  //     },
-                  //     "selection": {
-                  //         "hover": {"type": "single", "on": "mouseover", "nearest": true, "empty": "none"}
-                  //     }
-                  // },
 
                   {
                       "encoding": {

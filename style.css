@@ -107,10 +107,9 @@
     border-top: var(--border-size) solid var(--border-color);
     border-bottom: var(--border-size) solid var(--border-color);
     border-right: var(--border-size) solid var(--border-color);
-    /* border-left: var(--border-size) solid var(--border-color); */
     backdrop-filter: var(--background-blur);
     border-radius: 0px 8px 8px 0px;
-    width: fit-content;
+    width: 8vw;
     min-height: calc(var(--visualisation-min-height) - 50px);
     padding: 20px 10px;
     position: absolute;
@@ -120,7 +119,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* display: none; */
     opacity: 0;
     transition: opacity .1s ease-in;
 }
