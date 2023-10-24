@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     {"Category": "Owned Outright", "Percent": 31},
                     {"Category": "Owned with Mortgage", "Percent": 35},
                     {"Category": "Rented", "Percent": 30.6},
-                    {"Category": "Others", "Percent": 3.4}  // You can add this to make it sum to 100
+                    {"Category": "Others", "Percent": 3.4}
                 ]
             },
             "mark": {
@@ -27,10 +27,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 "color": {
                     "field": "Category",
                     "type": "nominal",
-                    "legend": {
-                        // "orient": "bottom"
-                    }
-                }
+                    "legend": {}
+                },
+                "tooltip": [
+                    {"field": "Category", "type": "nominal", "title": "Home Ownership Type"},
+                    {"field": "Percent", "type": "quantitative", "title": "Percentage"}
+                ]
             },
             "view": {"stroke": null}
         };

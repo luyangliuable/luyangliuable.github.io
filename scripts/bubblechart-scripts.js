@@ -74,6 +74,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 "scale": {
                     "domain": [0, 620]
                 },
+                "axis": {
+                    "grid": false,
+                },
                 "title": "Rent Price"
             },
             "tooltip": [

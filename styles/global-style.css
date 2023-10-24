@@ -15,8 +15,8 @@
 
 
 body {
-    background-image: url('https://w.wallhaven.cc/full/2k/wallhaven-2k27k9.jpg');
     /* background-image: url('https://cdn.pixabay.com/photo/2021/07/15/08/43/abstract-6467846_1280.png'); */
+    background-image: url('../assets/background.jpeg');
     font-family: 'Open Sans', sans-serif;
     background-size: cover;
     /* width: 100%; */
@@ -74,11 +74,13 @@ video {
 
 
 .slider {
-    width: 500px;
+    width: 100%;
     margin-bottom: 0px;
 }
 
 .slider__container {
+    width: fit-content;
+    width: 50vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -180,4 +182,11 @@ label {
     gap: 10px;
     align-items: center;
     justifty-content: center
+}
+
+.image {
+    width: 100%;
+    border-radius: 10px;
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
+    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
 }
