@@ -66,3 +66,9 @@
 .link-to-other-social-media>a:hover {
     opacity: .5
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Creates a 2-column grid layout */
+    gap: 2px; /* Optional: adds space between grid items */
+}
