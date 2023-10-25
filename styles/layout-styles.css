@@ -72,3 +72,7 @@
     grid-template-columns: 1fr 1fr; /* Creates a 2-column grid layout */
     gap: 2px; /* Optional: adds space between grid items */
 }
+
+.even-margin-around {
+    margin: 2vh 0 2vh;
+}
