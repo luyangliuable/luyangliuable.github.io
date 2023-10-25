@@ -134,6 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             "field": "Unemployment Rate",
                             "type": "quantitative",
                             "axis": {
+                                "title": "Unemployment Rate (%)",
                                 "grid": true,
                                 "gridDash": [3, 3],
                                 "gridWidth": 0.5
@@ -151,6 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         },
                         "y": {
                             "field": "Unemployment Rate",
+                            "title": "Unemployment Rate (%)",
                             "type": "quantitative",
                             "axis": { "grid": false }
                         },

@@ -4,16 +4,19 @@ const originalColorMap = {
     'Vancouver': '#2CA02C',   
     'Sydney': '#D62728',      
     'Melbourne': '#9467BD',   
-
     'Brisbane': '#8C564B',    
     'Hamburg': '#E377C2',     
     'Wellington': '#BCBD22',  
     'Tokyo': '#17BECF',       
-
     'Helsinki': '#7F7F7F',    
     'Copenhagen': '#Bcbd91',  
     'Zurich': '#D6616B',     
-    'Adelaide': '#1e90ff'
+    'Adelaide': '#1e90ff',
+    'Auckland': '#483D8B',
+    'Amsterdam': '#DAA520',
+    'Geneva': '#2E8B57',
+    'Calgary': '#FF6347',
+    'Frankfurt': '#8B0000'
 };
 
 const colorMap = {};
@@ -29,6 +32,8 @@ function filterBumpChartData() {
         if (checkbox.checked) {
             checkedSuburbs.add(city);
             colorMap[city] = originalColorMap[city];
+        } else {
+            delete colorMap[city];
         }
     });
 

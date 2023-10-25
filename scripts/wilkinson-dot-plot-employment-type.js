@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     "field": "id",
                     "type": "ordinal",
                     "axis": {
-                        "title": "Number of Employees",
+                        "title": "Number of Employees (x10000)",
                         "titleColor": "#FFF",
                         "labelColor": "#FFF",
                         "tickColor": "#FFF",
